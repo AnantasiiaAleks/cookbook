@@ -63,7 +63,7 @@ def register_view(request):
             user = register_form.save()
             messages.success(request, 'Персональная кулинарная книга создана. Добро пожаловать!')
             login(request, user)
-            return redirect('profile')
+            return redirect('usersapp:profile')
         else:
             messages.error(request, 'Возникла ошибка, попробуйте еще раз')
 
