@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form method="post" class="delete_block">
+    {% csrf_token %}
+    <p class="delete_question">Вы действительно хотите удалить "{{ recipe.title }}"?</p>
+    <div class="delete_buttons">
+      <a href="{% url 'usersapp:profile' %}" class="delete_abort"><button>Отмена</button></a>
+      <input type="submit" value="Удалить"  class="delete_button">
+    </div>
+  </form>
+{% endblock %}

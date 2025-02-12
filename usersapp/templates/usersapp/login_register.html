@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if page == 'register' %}
+<section>
+  <form action="{% url 'usersapp:register' %}" method="POST" class="login">
+    {% csrf_token %}
+    <label for="username">Логин</label>
+    <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+    <label for="password1">Пароль</label>
+    <input type="password" id="password1" name="password1" placeholder="********" required>
+    <label for="password2">Повторите пароль</label>
+    <input type="password" id="password2" name="password2" placeholder="********" required>
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="user@user.ru" required>
+    <!-- {{ register_form }} -->
+    <button type="submit">Зарегистрироваться</button>
+    <div class="have_acc">
+      <p>Уже есть аккаунт? <a href="{% url 'usersapp:login' %}">Войдите на сайт</a></p>
+    </div>
+  </form>
+  {% if register_form.errors %}
+  <div class="errorlist" id="errorContainer">
+      <button id="closeButton">&times;</button>
+      {% for field in register_form %}
+          {% for error in field.errors %}
+              <p>{{ error }}</p>
+          {% endfor %}
+      {% endfor %}
+      {% for error in form.non_fields_errors %}
+          <p>{{ error }}</p>
+      {% endfor %}
+  </div>
+  {% endif %}
+</section>
+{% else %}
+<section>
+   <form action="{% url 'usersapp:login' %}" method="POST"  class="login">
+     {% csrf_token %}
+      <label for="username">Логин</label>
+      <input type="text" id="username" name="username" placeholder="Имя пользователя" class="login__input" required>
+      <label for="password">Пароль</label>
+      <input type="password" id="password" name="password" placeholder="********" class="login__input" required>
+      <button type="submit">Войти</button>
+      <div class="have_acc">
+        <p>Нет аккаунта? <a href="{% url 'usersapp:register' %}">Зарегистрируйтесь</a></p>
+      </div>
+   </form>
+</section>
+{% endif %}
+{% endblock %}

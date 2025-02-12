@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="index-content">
+  <div class="search">
+    <form action="{% url 'recipesapp:search' %}" method="GET" class="search_field">
+      <input type="text"
+             name="search_query"
+             value="{{ search_query }}"
+             placeholder="Найти рецепт..."
+             aria-label="search"
+             class="search_field_field">
+      <button type="submit">Найти</button>
+    </form>
+  </div>
+
+  <article class="random_recipe-block">
+    <div class="random_recipe">
+      {% if random_recipe %}
+        <div class="random_recipe-left">
+          <div class="rr-left_text_and_btns">
+            <div >
+              <a href="{% url 'recipesapp:index' %}" class="random_recipe-refreshbtn">
+                <img src="{% static 'images/icon1.svg' %}" alt="иконка1">
+                <p>Случайный рецепт</p>
+              </a>
+            </div>
+            <h2 class="random_recipe-title">{{ random_recipe.title }}</h2>
+            <p class="random_recipe-desc">{{ random_recipe.description }}</p>
+            <a href="{% url 'recipesapp:recipe_details' pk=random_recipe.pk %}"><button>Подробнее...</button></a>
+          </div>
+        </div>
+        {% if random_recipe.photo %}
+          <div class="random_recipe-right">
+            <img src="{{ random_recipe.photo.url }}" alt="{{ random_recipe.title }}" class="random_recipe-img">
+          </div>  
+        {% endif %}
+      {% else %}
+        <p>Рецептов нет.</p>
+      {% endif %}  
+    </div>
+  </article>
+
+  <article class="categories-block">
+    <h2>Категории</h2>
+  
+    <div class="categories">
+      <ul class="categories-list">
+        {% for category in categories %}
+          <li>
+            <a href="{% url 'recipesapp:recipes_by_category' pk=category.pk %}" class="category-box">
+              <img src="{{ category.picture.url }}" alt="{{ category.name }}" class="category-img">
+              <p class="category-name">{{ category.name }}</p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+
+
+  <article class="recipes-block">
+    <h2>Последние рецепты</h2>
+    <div class="last_recipes">
+      <ul class="recipes-list_index">
+        {% for last_recipe in last_recipes %}
+          <li>
+            <a href="{% url 'recipesapp:recipe_details' pk=last_recipe.pk %}" class="recipe-box">
+              <img src="{{ last_recipe.photo.url }}" alt="{{ last_recipe.title }}" class="recipe-img">
+              <h5 class="recipe-title">{{ last_recipe.title }}</h5>
+              <p class="recipe-desc">{{ last_recipe.description }}</p>
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </article>
+
+
+
+  {% if not request.user.is_authenticated %}
+  <div class="index-login">
+    <h3>Вход</h3>
+    <form action="{% url 'usersapp:login' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Имя пользователя" class="login__input">
+      <input type="password" name="password" placeholder="********" class="login__input">
+      <button type="submit">Войти</button>
+    </form>
+  </div>
+  {% endif %}
+
+
+</section>
+{% endblock %}

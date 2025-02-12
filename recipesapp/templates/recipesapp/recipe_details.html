@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="recipe_details-block">
+
+  <div class="recipe_details-title-desc-box">
+    <h3 class="recipe_details-title">{{ recipe.title }}</h3>
+    <p class="recipe_details_desc">{{ recipe.description }}</p>
+  </div>
+
+  <div class="recipe_details-icon-box">
+    <div class="recipe_details-user-added-box">
+      <a href="{% url 'recipesapp:recipes_by_author' pk=recipe.author.pk %}">
+        <div class="userpicbox">
+          <img src="{% static 'images/userpic.jpg' %}" alt="{{ recipe.author.username }}" class="userpic">
+        </div>
+      </a>
+      <div class="recipe_details-user-added-text">
+        <a href="{% url 'recipesapp:recipes_by_author' pk=recipe.author.pk %}">
+          <h5 class="recipe_details-author">{{ recipe.author.username }}</h5>
+        </a>
+        <p class="recipe_details-added">{{ recipe.post_date }}</p>
+      </div>
+    </div>
+    
+    <a href="{% url 'recipesapp:recipes_by_category' pk=recipe.category.pk %}">
+      <div class="recipe_details-category-box">
+        <img src="{% static 'images/forkKnife.png' %}" alt="category-icon">
+        <p class="recipe_details-category">{{ recipe.category }}</p>
+      </div>
+    </a>
+
+    <div class="recipe_details-time-box">
+      <img src="{% static 'images/timer.png' %}" alt="timer-icon">
+      <div class="recipe_details-time-text">
+        <p class="recipe_details-time-simpletext">Время приготовления</p>
+        <p class="recipe_details-time-text-time">{{ recipe.cooking_time }} мин.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="recipe_details-img-ingr-box">
+    <div class="recipe_details-img-box">
+      {% if recipe.photo != 'recipes/default_recipe.jpg' %}
+        <img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe_details-img">
+      {% else %}
+        <div class="no_photo">
+          <img src="{% static 'images/no-photo.jpg' %}" alt="no-photo">
+          <p>К сожалению, фото отсутствует</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="recipe_details-ingr-box">
+      <h3 class="recipe_details-ingr-title">Ингредиенты</h3>
+      <ul>
+        {% for ingredient in ingredient_list %}
+        <li class="recipe_details-ingr"><span>&#x2714;</span> {{ ingredient }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  
+
+  <div class="recipe_details-text">
+    <ul>
+      {% for step in step_list %}
+        <li class="recipe_details-steps"><span>&#x2714;</span> {{ step }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+  <div class="recipe_details-btns">
+    {% if request.user == recipe.author %}
+      <a href="{% url 'recipesapp:edit_recipe' pk=recipe.pk %}"><button>Редактировать</button></a>
+      <a href="{% url 'recipesapp:delete_recipe' pk=recipe.pk %}"><button>Удалить</button></a>
+    {% endif %}
+  </div>
+
+</section>
+{% endblock %}

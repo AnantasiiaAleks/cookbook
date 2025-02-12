@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="create_edit_recipe-block">
+
+    {% if recipe %}
+      <h1>Редактировать рецепт</h1>
+    {% else %}
+      <h1>Записать новый рецепт</h1>
+    {% endif %}
+
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-block">
+
+      <div class="upper-block">
+        <div class="title_desc_time_cat-box">
+          <div>
+            <label for="id_title">Название:</label>
+            {{ recipe_form.title }}
+            {{ recipe_form.title.errors }}
+          </div>
+          
+          <div>
+            <label for="id_description">Описание:</label>
+            {{ recipe_form.description }}
+            {{ recipe_form.description.errors }}
+          </div>
+          <div>
+            <label for="id_cookind_time">Время приготовления:</label>
+            {{ recipe_form.cooking_time }}
+            {{ recipe_form.cooking_time.errors }}
+          </div>
+          <div>
+            <label for="id_category">Категория:</label>
+            <select name="category" id="id_category" class="form-select">
+              {% for category in categories %}
+                <option value="{{ category.id }}" 
+                  {% if category.id == recipe_form.category.value %}selected{% endif %}>
+              {{ category.name }}
+              {% endfor %}
+            </select>
+            {{ recipe_form.category.errors }}
+          </div>
+        </div>
+
+
+        <div class="ingr_steps-box">
+          <div>
+            <label for="id_ingredients">Ингредиенты:</label>
+            {{ recipe_form.ingredients }}
+            {{ recipe_form.ingredients.errors }}
+          </div>
+
+          <div>
+            <label for="id_cooking_steps">Этапы приготовления:</label>
+            {{ recipe_form.cooking_steps }}
+            {{ recipe_form.cooking_steps.errors }}
+          </div>
+        </div>
+      </div>
+
+
+      <div class="down-block">
+        <label for="id_photo">Загрузите фото:</label>
+        <input type="file" id="id_photo" name="photo" style="display: none;" onchange="updateFileName()" />
+        <label for="id_photo" class="custom-button">Выбрать файл</label>
+        <span id="file-name" style="margin-left: 10px;">Нет файла</span>
+        {{ recipe_form.photo.errors }}
+      </div>
+      
+
+      <button type="submit">
+        {% if recipe %}
+          Сохранить изменения
+        {% else %}
+          Создать рецепт
+        {% endif %}
+      </button>
+    
+    </div>
+  </form>
+
+  <a href="{% url 'usersapp:profile' %}" class="return">Вернуться в профиль без сохранения</a>
+</section>
+{% endblock %}
+

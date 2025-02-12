@@ -1,0 +1,25 @@
+{% load static %}
+ <header class="header">
+        <nav class="navigation container">
+            <div class="navigation__left">
+                <a href="{% url 'recipesapp:index' %}"><p class="logo">Кук-бук</p></a>
+            </div>
+            <div class="navigation__center">
+                <a href="{% url 'recipesapp:index' %}" class="menu-link" aria-label="Перейти на главную страницу">Главная</a>
+                <a href="{% url 'recipesapp:about' %}" class="menu-link" aria-label="Узнать о проекте">О проекте</a>
+                <a href="{% url 'recipesapp:all_recipes' %}" class="menu-link" aria-label="Посмотреть все рецепты">Рецепты</a>
+                <a href="{%url 'usersapp:profile' %}" class="menu-link" aria-label="Мои рецепты">Моя книга</a>
+            </div>
+            {% if not request.user.is_authenticated %}
+
+            <div class="navigation__right">
+                <a href="{% url 'usersapp:login' %}" class="menu-link">Вход</a>
+                <a href="{% url 'usersapp:register' %}" class="menu_link ml-focus ml-focus-color ml-focus-animate">Регистрация</a>
+            </div>
+            {% else %}
+            <div class="navigation__right">
+                <a href="{% url 'usersapp:logout' %}" class="menu_link ml-focus ml-focus-color ml-focus-animate">Выйти</a>
+            </div>
+            {% endif %}
+        </nav>
+    </header>

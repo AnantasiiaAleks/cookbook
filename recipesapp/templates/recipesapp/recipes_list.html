@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section> 
+	<article class="recipes-block">
+    <h1 class="page_title">{{ page_title }}</h1>
+    <div class="recipes">
+      <ul class="recipes-list">
+		{% if page == 'all_recipes' %}
+	        {% for recipe in all_recipes %}
+          		<li>
+					<a href="{% url 'recipesapp:recipe_details' pk=recipe.pk %}" class="recipe-box">
+						<img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe-img">
+						<h5 class="recipe-title">{{ recipe.title }}</h5>
+						<p class="recipe-desc">{{ recipe.description }}</p>
+					</a>
+				</li>
+        	{% endfor %}
+		{% elif page == 'recipes_by_category' %}
+			{% for recipe in recipes_by_category %}
+				<li>
+					<a href="{% url 'recipesapp:recipe_details' pk=recipe.pk %}" class="recipe-box">
+						<img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe-img">
+						<h5 class="recipe-title">{{ recipe.title }}</h5>
+						<p class="recipe-desc">{{ recipe.description }}</p>
+					</a>
+				</li>
+			{% endfor %}
+		{% elif page == 'recipes_by_author' %}
+			{% for recipe in recipes_by_author %}
+				<li>
+		  			<a href="{% url 'recipesapp:recipe_details' pk=recipe.pk %}" class="recipe-box">
+			  			<img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe-img">
+			  			<h5 class="recipe-title">{{ recipe.title }}</h5>
+			  			<p class="recipe-desc">{{ recipe.description }}</p>
+		  			</a>
+	  			</li>
+  			{% endfor %}
+		{% elif page == 'search_results' %}
+			{% if results %}
+				{% for recipe in results %}
+					<li>
+						<a href="{% url 'recipesapp:recipe_details' pk=recipe.pk %}" class="recipe-box">
+							<img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe-img">
+							<h5 class="recipe-title">{{ recipe.title }}</h5>
+							<p class="recipe-desc">{{ recipe.description }}</p>
+						</a>
+					</li>
+				{% endfor %}
+			{% else %}
+				<p>Рецепты не найдены.</p>
+			{% endif %}
+		{% endif %}
+      </ul>
+    </div>
+  </article>
+</section>
+{% endblock %}

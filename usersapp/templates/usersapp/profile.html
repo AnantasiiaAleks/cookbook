@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section>
+  <div class="profile-title_button">
+    <h1 class="page_title">{{ name }}</h1>
+    <a href="{% url 'recipesapp:create_recipe' %}"><button>Добавить новый рецепт</button></a>
+  </div>
+  <article class="recipes-block">
+    <ul class="recipes-list">
+      {% if profile_recipes %}
+      {% for recipe in profile_recipes %}
+      <li>
+        {% if recipe.pk %}
+          <a href="{% url 'recipesapp:recipe_details' pk=recipe.pk %}" class="recipe-box">
+            <img src="{{ recipe.photo.url }}" alt="{{ recipe.title }}" class="recipe-img">
+            <h5 class="recipe-title">{{ recipe.title }}</h5>
+            <p class="recipe-desc">{{ recipe.description }}</p>
+          </a>
+        {% else %}
+          <span>Рецепт недоступен</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+      {% else %}
+        <li>У вас нет рецептов. Добавьте новый рецепт!</li>
+      {% endif %}
+    </ul>
+  </article>
+
+</section>
+{% endblock %}

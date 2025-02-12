@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Кук-бук - твоя новая кулинарная книга.">
+    <meta name="keywords" content="кулинария, рецепты, книга рецептов, еда">
+    <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nav_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recipes_styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+	<title>Кук-бук - твоя новая кулинарная книга</title>
+</head>
+<body>
+   {% include 'nav.html' %}
+    <main class="container">
+    {% block content %}
+    {% endblock %}
+    </main>
+    <footer class="footer container">
+        <div class="footer__upper">
+            <div class="footer__upper__left">
+                <a href="{% url 'recipesapp:index' %}" class="logo"><p class="logo">Кук-бук</p></a>
+                <p class="footer_p">Далеко-далеко, за словесными горами в стране гласных и согласных.</p>
+            </div>
+            <div class="footer__upper__right">
+                <a href="{% url 'recipesapp:about' %}" class="menu-link">О проекте</a>
+                <a href="{% url 'recipesapp:all_recipes' %}" class="menu-link">Рецепты</a>
+                <a href="{% url 'usersapp:profile' %}" class="menu-link">Моя книга</a>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p class="credits">&COPY; 2025 MVA-Creation. Powered by <a href="https://github.com/AnantasiiaAleks/cookbook">AnastasyAleks</a> with <a href="https://www.djangoproject.com/" target="_blank">Django</a></p>
+        </div>
+    </footer>
+    <script src="{% static 'js/base_js.js' %}"></script>
+</body>
+</html>
