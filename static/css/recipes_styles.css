@@ -1,0 +1,366 @@
+/* Стили рецептов на index */
+
+.random_recipe-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-height: 640px;
+    width: 95%;
+    margin: auto;
+}
+
+.random_recipe {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.random_recipe-left {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background: linear-gradient(90deg, rgb(231, 249, 253),rgba(231, 249, 253, 0.5) 80%);
+    border-radius: 30px;
+}
+
+.random_recipe-right {
+    position: relative;
+    z-index: 0;
+    border-radius:30px;
+    overflow: hidden;
+    max-width: 100%;
+    margin-left: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.random_recipe-img {
+    border-radius: 16px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.rr-left_text_and_btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    margin-top: 50px;
+    margin-left: 50px;
+    gap: 50px;
+}
+
+
+.random_recipe-refreshbtn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    padding: 11px 20px;
+    border-radius: 30px;
+    background: rgb(255, 255, 255);
+}
+
+.random_recipe-title {
+    color: rgb(0, 0, 0);
+    font-family: Inter;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 77px;
+    letter-spacing: -4%;
+    text-align: left;
+    width: 40%;
+}
+
+.random_recipe-desc {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-align: left;
+    width: 40%;
+}
+
+.recipes-block {
+    margin-top: 60px;
+}
+
+.recipes-list_index {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 40px;
+}
+
+.recipes-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.recipe-box {
+    width: 400px;
+    height: 434px;
+    padding: 16px;
+    border-radius: 30px;
+    background: linear-gradient(180.00deg, rgba(231, 249, 253, 0),rgb(231, 249, 253) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    align-items: center;
+}
+
+.recipe-img {
+    border-radius: 16px;
+    overflow: hidden;
+    object-fit: cover;
+    width: 364px;
+    height: 364px;
+    /* max-height: 364px; */
+}
+
+.recipe-title {
+    /* margin-top: 24px; */
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: -4%;
+    text-align: left;
+}
+
+.recipe-desc {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: -2%;
+    text-align: left;
+}
+
+/* Стили одного рецепта */
+
+.recipe_details-block {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.recipe_details-title-desc-box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.recipe_details-title {
+    color: rgb(0, 0, 0);
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 77px;
+    letter-spacing: -4%;
+    text-align: left;
+}
+
+.recipe_details-icon-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 90px;
+}
+
+.recipe_details-user-added-box, 
+.recipe_details-category-box,
+.recipe_details-time-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+}
+
+.recipe_details-user-added-text,
+.recipe_details-time-text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.recipe_details-author {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: -2%;
+    text-align: left;
+}
+
+.recipe_details-added,
+.recipe_details-category,
+.recipe_details-time-text-time {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    letter-spacing: -2%;
+    text-align: left;
+}
+
+.recipe_details-time-box img {
+    width: 24px;
+    height: 24px;
+}
+
+.recipe_details-time-text-simpletext {
+    color: rgb(0, 0, 0);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 10%;
+    text-align: left;
+}
+
+.recipe_details-img-ingr-box {
+    display: grid;
+    grid-template-columns: 65% 35%;
+    gap: 20px;
+    max-height: auto;
+    
+}
+
+.recipe_details-img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 600px;
+    overflow: hidden;
+}
+
+.recipe_details-img {
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+}
+
+.no_photo {
+    display: inline-block;
+    position: relative;
+}
+
+.no_photo img {
+    height: 600px;
+    border-radius: 30px;
+}
+
+.no_photo p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-size: 24px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    text-align: center;
+}
+
+.recipe_details-ingr-box {
+    border-radius: 30px;
+    background: rgb(231, 250, 254);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.recipe_details-ingr-title {
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 29px;
+    letter-spacing: -4%;
+    text-align: left;
+}
+
+.recipe_details-ingr {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+    letter-spacing: -4%;
+    text-align: left;
+}
+
+.recipe_details-text {
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+    gap: 24px;
+}
+
+.recipe_details-steps {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-align: left;
+}
+
+
+
+/* Удаление рецепта */
+
+.delete_block {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 160px;
+}
+
+.delete_question {
+    font-size: 20px;
+}
+
+.delete_buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 36px;
+}
+
+.delete_button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    width: 160px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 16px;
+    transition: background-color 0.3s, transform 0.2s; /* Плавные переходы */
+}
+
+.delete_button:hover {
+    background-color: #d32f2f; /* Более темный красный при наведении */
+    transform: translateY(-2px); /* Легкий подъем при наведении */
+}
+
+.delete_button:active {
+    transform: translateY(0); /* Возвращаемся к исходному положению при нажатии */
+}
